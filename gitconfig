@@ -1,0 +1,14 @@
+[user]
+	name = Julian Wolf
+	email = julian.wolf@mail.mcgill.ca
+[core]
+	editor = emacs
+	whitespace = tab-in-indent
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+[column]
+	ui = auto
+[push]
+	default = simple
