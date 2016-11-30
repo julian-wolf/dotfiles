@@ -7,3 +7,4 @@ weechat/weechat_fifo_*
 weechat/logs
 weechat/python
 weechat/perl
+*.gz
