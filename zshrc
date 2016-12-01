@@ -41,10 +41,7 @@ RPROMPT='${return_status} %T'
 # end fishy emulation emulation
 
 alias ipy="ipython --pylab"
-# alias psl="echo '     $((`ps aux | wc -l` - 2))'"
-# alias psproc="ps aux | head -1; ps aux | sort -rn -k 3 | cut -c 1-$(($COLUMNS - 7)) | head"
-# alias psmem="ps aux | head -1; ps aux | sort -rn -k 4 | cut -c 1-$(($COLUMNS - 7)) | head"
-# alias brewski="set -x; brew update && brew upgrade && brew cleanup; brew cask update && brew cask cleanup; set +x"
+alias condapip="~/anaconda/bin/pip"
 
 # open things in Sublime directly
 _sublime_path="/Applications/Sublime Text 2.app/Contents/SharedSupport/bin/subl"
