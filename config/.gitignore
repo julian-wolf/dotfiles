@@ -1,0 +1,10 @@
+/*
+!.gitignore
+
+!beets
+beets/*
+!beets/config.yaml
+
+!cmus
+cmus/*
+!cmus/rc

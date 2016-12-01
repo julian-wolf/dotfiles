@@ -1,0 +1,8 @@
+set output_plugin=ao
+set display_artist_sort_name=true
+set format_current= %a - %l - %02n. %t%= %y
+set format_playlist= %-36a %4y - %-34l %02n. %t%= %{codec} @ %4{bitrate}kbps | %d
+set format_playlist_va= %-36a %4y - %-34l %02n. %a - %t%= %{codec} @ %4{bitrate}kbps | %d
+set format_title=%l
+set lib_sort=albumartist date album discnumber filename tracknumber title
+set play_sorted=true

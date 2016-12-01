@@ -1,0 +1,61 @@
+library: "/Volumes/Data HDD/Music/beetslibrary.blb" # always local
+directory: "/Volumes/WD_Passport_Wolf/Music/Releases" # external
+# directory: "/Volumes/Data HDD/Music" # local
+import:
+    write: no
+    move: yes # for processing in-place
+    # move: no # for adding to library
+    log: "/Volumes/WD_Passport_Wolf/Music/beetslog.txt" # external
+    # log: "/Volumes/Data HDD/Music/beetslog.txt" # local
+    autotag: no
+ignore_hidden: yes
+art_filename: cover
+threaded: yes
+ui:
+    color: yes
+per_disc_numbering: yes
+original_date: yes
+plugins: copyartifacts the inline
+item_fields:
+    multidisc: True if disctotal > 1 else False
+    release_year: |
+        if original_year:
+            return original_year
+        elif year:
+            return year
+        else:
+            return None
+    bitdepth_maybe: |
+        if bitdepth not in (0, 16):
+            return "%dbit" % (bitdepth,)
+        else:
+            return None
+album_fields:
+    format_name_probably: |
+        if items[0].format in ("mp3", "Mp3", "MP3"):
+            total_bitrate = 0
+            for item in items:
+                total_bitrate += item.bitrate
+            average_bitrate = total_bitrate / len(items) / 1000
+            if average_bitrate >= 320:
+                return "320 CBR"
+            elif average_bitrate >= 220:
+                return "v0"
+            else:
+                return "low bitrate"
+        else:
+            return items[0].format
+paths:
+    default: %the{$albumartist} - %if{$release_year,$release_year - }$album [%if{$bitdepth_maybe,$bitdepth_maybe }$format_name_probably]/%if{$multidisc,Disc $disc/}$track $title
+    comp: %the{$albumartist} - %if{$release_year,$release_year - }$album [%if{$bitdepth_maybe,$bitdepth_maybe }$format_name_probably]/%if{$multidisc,Disc $disc/}$track $artist - $title
+    ext:log: $albumpath/$artist - $album
+    ext:LOG: $albumpath/$artist - $album
+    ext:cue: $albumpath/$artist - $album
+    ext:CUE: $albumpath/$artist - $album
+    ext:jpg: $albumpath/cover
+    ext:JPG: $albumpath/cover
+    ext:png: $albumpath/cover
+    ext:PNG: $albumpath/cover
+copyartifacts:
+    extensions: .cue .CUE .log .LOG .png .PNG .jpg .JPG .txt .TXT
+    print_ignored: yes
