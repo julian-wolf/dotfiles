@@ -49,9 +49,14 @@ subl () { "$_sublime_path" $* }
 alias st=subl
 
 _pip_upgrade_all () {
-    /usr/local/bin/pip list --outdated --format=legacy |
-        cut -d " " -f 1 |
-        xargs -t -n1 /usr/local/bin/pip install -U
+    outdated=$(pip list --outdated --format=legacy)
+    if ! [ -z "$outdated" ]; then
+        echo "$outdated" |
+            cut -d " " -f 1 |
+            xargs -t -n1 pip install -U
+    else
+        echo "Already up-to-date."
+    fi
 }
 alias pip-upgrade-all=_pip_upgrade_all
 
