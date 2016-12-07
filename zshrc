@@ -41,7 +41,6 @@ RPROMPT='${return_status} %T'
 # end fishy emulation emulation
 
 alias ipy="ipython --pylab"
-alias condapip="~/anaconda/bin/pip"
 alias mt="make-pth-torrent"
 
 # open things in Sublime directly
@@ -54,13 +53,7 @@ _pip_upgrade_all () {
         cut -d " " -f 1 |
         xargs -t -n1 /usr/local/bin/pip install -U
 }
-_condapip_upgrade_all () {
-    ~/anaconda/bin/pip list --outdated --format=legacy |
-        cut -d " " -f 1 |
-        xargs -t -n1 ~/anaconda/bin/pip install -U
-}
 alias pip-upgrade-all=_pip_upgrade_all
-alias condapip-upgrade-all=_condapip_upgrade_all
 
 # search for a process
 find_in_ps () { ps aux | head -1; ps aux | grep $1 | cut -c 1-$(($COLUMNS - 7)) }
