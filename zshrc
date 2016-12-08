@@ -31,7 +31,7 @@ _fishy_collapsed_wd() {
     BEGIN {
       binmode STDIN,  ':encoding(UTF-8)';
       binmode STDOUT, ':encoding(UTF-8)';
-    }; s|^$HOME|~|g; s|/([^/])[^/]*(?=/)|/\$1|g
+    }; s|^$HOME|~|g; s|/(\.?[^/])[^/]*(?=/)|/\$1|g
   ")
 }
 PROMPT='%n@%m $(_fishy_collapsed_wd)%(!.#.>) '
@@ -70,5 +70,7 @@ eval "$(hub alias -s)"
 # pushd $(brew --prefix root6) > /dev/null; . libexec/thisroot.sh; popd > /dev/null
 . /Users/julian/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 eval "$(thefuck --alias)"
+
+. `brew --prefix`/etc/profile.d/z.sh
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
