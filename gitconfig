@@ -12,3 +12,5 @@
 	ui = auto
 [push]
 	default = simple
+[github]
+	user = julian-wolf

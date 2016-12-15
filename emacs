@@ -22,10 +22,10 @@ inserts ')' characters at point until `beginning-of-defun' and
 is exceeded."
   (interactive)
   (loop for i from 1 to slime-close-parens-limit
-	until (save-excursion
-		(slime-beginning-of-defun)
-		(ignore-errors (slime-end-of-defun) t))
-	do (insert ")")))
+  until (save-excursion
+    (slime-beginning-of-defun)
+    (ignore-errors (slime-end-of-defun) t))
+  do (insert ")")))
 
 (define-key slime-mode-map (kbd "C-c C-q") 'slime-close-parens-at-point)
 
@@ -37,6 +37,18 @@ is exceeded."
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/"))
+       '("melpa" . "http://melpa.org/packages/"))
 
 (global-set-key (kbd "C-x g") 'magit-status)
+
+(defun julia-repl ()
+  "Runs Julia in a screen session in a `term' buffer."
+  (interactive)
+  (require 'term)
+  (let ((termbuf (apply 'make-term "Julia REPL" "screen"
+                        nil (split-string-and-unquote "julia"))))
+    (set-buffer termbuf)
+    (term-mode)
+    (term-char-mode)
+    (switch-to-buffer termbuf)))
+(global-set-key (kbd "C-x j") 'julia-repl)

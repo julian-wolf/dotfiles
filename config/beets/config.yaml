@@ -48,10 +48,10 @@ album_fields:
 paths:
     default: %the{$albumartist} - %if{$release_year,$release_year - }$album [%if{$bitdepth_maybe,$bitdepth_maybe }$format_name_probably]/%if{$multidisc,Disc $disc/}$track $title
     comp: %the{$albumartist} - %if{$release_year,$release_year - }$album [%if{$bitdepth_maybe,$bitdepth_maybe }$format_name_probably]/%if{$multidisc,Disc $disc/}$track $artist - $title
-    ext:log: $albumpath/$artist - $album
-    ext:LOG: $albumpath/$artist - $album
-    ext:cue: $albumpath/$artist - $album
-    ext:CUE: $albumpath/$artist - $album
+    ext:log: $albumpath/$albumartist - $album
+    ext:LOG: $albumpath/$albumartist - $album
+    ext:cue: $albumpath/$albumartist - $album
+    ext:CUE: $albumpath/$albumartist - $album
     ext:jpg: $albumpath/cover
     ext:JPG: $albumpath/cover
     ext:png: $albumpath/cover
