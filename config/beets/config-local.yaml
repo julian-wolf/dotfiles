@@ -1,0 +1,9 @@
+library: "/Volumes/Data HDD/Music/beetslibrary.blb"
+directory: "/Volumes/Data HDD/Music"
+import:
+    move: no
+    log: "/Volumes/Data HDD/Music/beetslog.txt"
+hook:
+    hooks:
+        - event: album_imported
+          command: "cmus-remote -l \"{album.path}\""

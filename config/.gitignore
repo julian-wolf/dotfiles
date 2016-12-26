@@ -4,6 +4,7 @@
 !beets
 beets/*
 !beets/config.yaml
+!beets/config-local.yaml
 
 !cmus
 cmus/*

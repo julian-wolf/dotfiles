@@ -15,7 +15,7 @@ ui:
     color: yes
 per_disc_numbering: yes
 original_date: yes
-plugins: copyartifacts the inline
+plugins: copyartifacts the inline hook
 item_fields:
     multidisc: True if disctotal > 1 else False
     release_year: |
