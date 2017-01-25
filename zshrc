@@ -7,6 +7,7 @@ zstyle ':completion:*' select-prompt %SSrolling active: current selection at %p%
 zstyle :compinstall filename '/Users/julian/.zshrc'
 
 autoload -Uz compinit && compinit
+autoload -Uz bashcompinit && bashcompinit
 autoload -Uz colors && colors
 
 HISTFILE=~/.zsh_history
@@ -51,6 +52,7 @@ alias st=subl
 _pip_upgrade_all () {
     outdated=$(pip list --outdated --format=legacy)
     if ! [ -z "$outdated" ]; then
+        pip list --outdated --format=columns
         echo "$outdated" |
             cut -d " " -f 1 |
             xargs -t -n1 pip install -U
@@ -65,6 +67,8 @@ find_in_ps () { ps aux | head -1; ps aux | grep $1 | cut -c 1-$(($COLUMNS - 7)) 
 alias psgrep=find_in_ps
 
 # test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval "$(stack --bash-completion-script stack)"
 
 eval "$(hub alias -s)"
 # pushd $(brew --prefix root6) > /dev/null; . libexec/thisroot.sh; popd > /dev/null

@@ -5,6 +5,13 @@
 ;; You may delete these explanatory comments.
 (package-initialize)
 
+(require 'package)
+
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+                         ("melpa" . "https://melpa.org/packages/")
+			 ("org" . "http://orgmode.org/elpa/")))
+
 (add-hook 'text-mode-hook 'auto-fill-mode)
 
 (setq inferior-lisp-program "sbcl")
@@ -34,21 +41,17 @@ is exceeded."
 (global-linum-mode t)
 (setq linum-format "%3d ")
 
-(require 'package)
-
-(add-to-list 'package-archives
-       '("melpa" . "http://melpa.org/packages/"))
-
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(defun julia-repl ()
-  "Runs Julia in a screen session in a `term' buffer."
-  (interactive)
-  (require 'term)
-  (let ((termbuf (apply 'make-term "Julia REPL" "screen"
-                        nil (split-string-and-unquote "julia"))))
-    (set-buffer termbuf)
-    (term-mode)
-    (term-char-mode)
-    (switch-to-buffer termbuf)))
-(global-set-key (kbd "C-x j") 'julia-repl)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages (quote (org ## utop magit julia-shell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
