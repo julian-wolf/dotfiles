@@ -50,14 +50,24 @@ subl () { "$_sublime_path" $* }
 alias st=subl
 
 _pip_upgrade_all () {
-    outdated=$(pip list --outdated --format=legacy)
+    outdated=$(pip2 list --outdated --format=legacy)
     if ! [ -z "$outdated" ]; then
-        pip list --outdated --format=columns
+        pip2 list --outdated --format=columns
         echo "$outdated" |
             cut -d " " -f 1 |
-            xargs -t -n1 pip install -U
+            xargs -t -n1 pip2 install -U
     else
-        echo "Already up-to-date."
+        echo "pip2: Already up-to-date."
+    fi
+
+    outdated3=$(pip3 list --outdated --format=legacy)
+    if ! [ -z "$outdated3" ]; then
+        pip3 list --outdated --format=columns
+        echo "$outdated3" |
+            cut -d " " -f 1 |
+            xargs -t -n1 pip3 install -U
+    else
+        echo "pip3: Already up-to-date."
     fi
 }
 alias pip-upgrade-all=_pip_upgrade_all
@@ -78,3 +88,6 @@ eval "$(thefuck --alias)"
 . `brew --prefix`/etc/profile.d/z.sh
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# added by travis gem
+[ -f /Users/julian/.travis/travis.sh ] && source /Users/julian/.travis/travis.sh
