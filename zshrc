@@ -50,22 +50,18 @@ subl () { "$_sublime_path" $* }
 alias st=subl
 
 _pip_upgrade_all () {
-    outdated=$(pip2 list --outdated --format=legacy)
-    if ! [ -z "$outdated" ]; then
+    outdated2=$(pip2 list --outdated --format=freeze | cut -d = -f 1)
+    if ! [ -z "$outdated2" ]; then
         pip2 list --outdated --format=columns
-        echo "$outdated" |
-            cut -d " " -f 1 |
-            xargs -t -n1 pip2 install -U
+        echo "$outdated2" | xargs -t -n1 pip2 install -U
     else
         echo "pip2: Already up-to-date."
     fi
 
-    outdated3=$(pip3 list --outdated --format=legacy)
+    outdated3=$(pip3 list --outdated --format=freeze | cut -d = -f 1)
     if ! [ -z "$outdated3" ]; then
         pip3 list --outdated --format=columns
-        echo "$outdated3" |
-            cut -d " " -f 1 |
-            xargs -t -n1 pip3 install -U
+        echo "$outdated3" | xargs -t -n1 pip3 install -U
     else
         echo "pip3: Already up-to-date."
     fi
