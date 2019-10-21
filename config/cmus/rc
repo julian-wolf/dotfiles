@@ -1,4 +1,4 @@
-set output_plugin=ao
+set output_plugin=coreaudio
 set display_artist_sort_name=true
 set format_current= %a - %l - %02n. %t%= %y
 set format_playlist= %-36a %4y - %-34l %02n. %t%= %{codec} @ %4{bitrate}kbps | %d
