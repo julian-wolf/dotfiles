@@ -25,21 +25,17 @@ zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
 bindkey "^[[B" down-line-or-beginning-search
 
-# emulate oh-my-zsh fishy theme emulating fish prompt
-setopt PROMPT_SUBST PROMPT_PERCENT
-_fishy_collapsed_wd() {
-  echo $(pwd | perl -pe "
-    BEGIN {
-      binmode STDIN,  ':encoding(UTF-8)';
-      binmode STDOUT, ':encoding(UTF-8)';
-    }; s|^$HOME|~|g; s|/(\.?[^/])[^/]*(?=/)|/\$1|g
-  ")
-}
-PROMPT='%n@%m $(_fishy_collapsed_wd)%(!.#.>) '
-PROMPT2='%n@%m $(_fishy_collapsed_wd)%(!.#.>) %{$fg[red]%}...%{$reset_color%} '
+NEWLINE=$'\n'
 local return_status="%{$fg_bold[red]%}%(?..[%?])%{$reset_color%}"
+
+setopt prompt_subst prompt_percent
+
+PROMPT='${NEWLINE}%{$fg[green]%}${USER}@%M%{$reset_color%} %{$fg[yellow]%}%~%{$reset_color%}%{$fg[cyan]%} ${vcs_info_msg_0_}%{$reset_color%}${NEWLINE}%# '
+PROMPT2='%# %{$fg[red]%}...%{$reset_color%} '
 RPROMPT='${return_status} %T'
-# end fishy emulation emulation
+
+zstyle ':vcs_info:git:*' formats '(%b)'
+zstyle ':vcs_info:*' enable git
 
 alias ipy="ipython --pylab"
 alias mt="make-pth-torrent"
