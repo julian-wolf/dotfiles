@@ -15,6 +15,11 @@ set cmdheight=2
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
+map <C-a> <ESC>^
+imap <C-a> <ESC>I
+map <C-e> <ESC>$
+imap <C-e> <ESC>A
+
 set ignorecase
 set smartcase
 set hlsearch
