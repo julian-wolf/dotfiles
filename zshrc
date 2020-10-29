@@ -83,3 +83,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # added by travis gem
 [ -f /Users/julian/.travis/travis.sh ] && source /Users/julian/.travis/travis.sh
+
+export PROMPT_COMMAND="echo -ne '\033]0;${USER}@${HOST}\007';$PROMPT_COMMAND"
+precmd() { eval "$PROMPT_COMMAND" }
